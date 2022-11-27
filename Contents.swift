@@ -1,14 +1,17 @@
 import Foundation
 
+func calculPace(startedSessionEpoch: Double = (Date().timeIntervalSince1970 - 600), nowEpoch: Double = Date().timeIntervalSince1970, meters: Double) -> String {
+	let distance: Double = (meters >= 1_000 ? meters / 1_000 : meters)
 
-let now = Date().timeIntervalSince1970
-let tenMinutesAgo = (now - 600)
-let kilometers: Double = 2
+	let sessionTime = (nowEpoch - startedSessionEpoch)
 
-let sessionTime = (now - tenMinutesAgo)
+	let paceInSec = (sessionTime / distance)
 
-let paceInSec = (sessionTime / kilometers)
+	let min = (Int(paceInSec) / 60)
+	let sec = (Int(paceInSec) % 60)
 
-let paceInMin = (paceInSec / 60)
+	
+	return (String(format: "%02i:%02i min/km", min, sec))
+}
 
-print(String(format: "%.2f min/km", paceInMin))
+print(calculPace(meters: 3000))
