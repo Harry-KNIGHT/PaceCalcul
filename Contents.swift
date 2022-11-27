@@ -15,3 +15,14 @@ func calculPace(startedSessionEpoch: Double = (Date().timeIntervalSince1970 - 60
 }
 
 print(calculPace(meters: 3000))
+
+func calculAverageSpeed(distanceInMeters: Double, timeInSec: Double) -> Double {
+	guard timeInSec > 0 else { return 0 }
+
+	let distanceInKM = (distanceInMeters / 1_000)
+	let timeInH = (timeInSec / 3600)
+
+	return (distanceInKM / timeInH)
+}
+
+print(calculAverageSpeed(distanceInMeters: 2_000, timeInSec: 120))
